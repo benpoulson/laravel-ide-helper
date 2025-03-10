@@ -551,6 +551,9 @@ class ModelsCommand extends Command
     public function getPropertiesFromTable($model)
     {
         $table = $model->getTable();
+        $table = explode('.', $table);
+        $table = end($table);
+
         $schema = $model->getConnection()->getSchemaBuilder();
         $columns = $schema->getColumns($table);
         $driverName = $model->getConnection()->getDriverName();
